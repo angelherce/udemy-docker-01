@@ -1,5 +1,13 @@
 FROM centos:7
 
+# Permite que el usuario añada metadatos en formato de clave-valor
+LABEL version "1.0.0"
+LABEL description "This is an Apache image"
+LABEL vendor "angelhs"
+
+# Define el usuario que se encargará de ejecutar las acciones en la imagen a partir de un momento determinado
+USER root
+
 RUN yum install httpd -y
 
 # Establece el directorio de trabajo (carpeta desde donde se van a ejecutar los comandos).
@@ -17,7 +25,16 @@ ADD ./beryllium.tar ./
 # Clave Valor
 ENV HI_WORLD "Hello World !!!"
 
-RUN echo "$HI_WORLD" > ./index.html
+RUN echo "$(whoami)" > ./user-1.html
+
+RUN useradd pepe
+RUN chown -R pepe ./
+
+USER pepe
+
+RUN echo "$(whoami)" > ./user-2.html
+
+USER root
 
 # Documenta la asignación de puertos y soporta los protocolos TCP y UDP.
 # Si un contenedor se inicia con "docker run -P", el contenedor escucha en los puertos definidos a través de EXPOSE.
