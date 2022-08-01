@@ -25,6 +25,7 @@ ADD ./beryllium.tar ./
 # Clave Valor
 ENV HI_WORLD "Hello World !!!"
 
+RUN echo "$HI_WORLD" > ./hi-world.html
 RUN echo "$(whoami)" > ./user-1.html
 
 RUN useradd pepe
@@ -36,9 +37,11 @@ RUN echo "$(whoami)" > ./user-2.html
 
 USER root
 
+COPY ./run.sh /run.sh
+
 # Documenta la asignación de puertos y soporta los protocolos TCP y UDP.
 # Si un contenedor se inicia con "docker run -P", el contenedor escucha en los puertos definidos a través de EXPOSE.
 # De manera alternativa, los puertos asignados pueden ser sobrescritos con "docker run -p".
 EXPOSE 80/tcp
 
-CMD ["apachectl", "-DFOREGROUND"]
+CMD ["sh", "/run.sh"]
