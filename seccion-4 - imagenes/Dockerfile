@@ -10,10 +10,9 @@ WORKDIR /usr/share/nginx/html
 
 COPY ./fruit ./
 
-RUN mkdir whoami
-RUN echo "Yo soy $(whoami)" > ./whoami/index.html
+RUN mkdir whoami && echo "Yo soy $(whoami)" > ./whoami/index.html
 
-VOLUME /var/log/nginx
+VOLUME /usr/share/nginx/html
 
 EXPOSE 80
 
