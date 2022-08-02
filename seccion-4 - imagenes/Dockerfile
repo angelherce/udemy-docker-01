@@ -1,25 +1,34 @@
 FROM centos:7
 
-LABEL version "1.0.0"
-
-WORKDIR /var/www/html
+COPY ./conf/nginx.repo /etc/yum.repos.d/nginx.repo
 
 RUN \
-    yum -y install httpd \
-    php \
-    php-cli \
-    php-common \
-    mod_ssl \
-    openssl
+    yum -y install nginx --enablerepo=nginx && \
+    yum -y install https://repo.ius.io/ius-release-el7.rpm && \
+    yum -y install \
+        php71u-fpm \
+        php71u-cli \
+        php71u-mysqlnd \
+        php71u-soap \
+        php71u-xml \
+        php71u-zip \
+        php71u-json \
+        php71u-mcrypt \
+        php71u-mbstring \
+        php71u-gd \
+         --enablerepo=ius-archive && \
+    yum clean all
 
-RUN echo "<?php phpinfo(); ?>" > info.php
+EXPOSE 80 443
 
-COPY ./ssl.conf /etc/httpd/conf.d/default.conf
-COPY ./docker.crt /docker.crt
-COPY ./docker.key /docker.key
+VOLUME /var/www/html /var/log/nginx /var/log/php-fpm /var/lib/php-fpm
 
-COPY ./startbootstrap-sb-admin-2 ./app
+COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 443
+COPY ./index.php /var/www/html/index.php
 
-CMD apachectl -DFOREGROUND
+COPY ./bin/start.sh /start.sh
+
+RUN chmod +x /start.sh
+
+CMD /start.sh
