@@ -1,19 +1,14 @@
-FROM nginx
+FROM centos:7
 
 LABEL version "1.0.0"
 
-USER root
+WORKDIR /var/www/html
 
-ENV file "docker"
+RUN \
+    yum -y install httpd php php-cli php-common
 
-WORKDIR /usr/share/nginx/html
+RUN echo "<?php phpinfo(); ?>" > info.php
 
-COPY ./fruit ./
+COPY ./startbootstrap-sb-admin-2 ./app
 
-RUN mkdir whoami && echo "Yo soy $(whoami)" > ./whoami/index.html
-
-VOLUME /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD nginx -g 'daemon off;'
+CMD apachectl -DFOREGROUND
