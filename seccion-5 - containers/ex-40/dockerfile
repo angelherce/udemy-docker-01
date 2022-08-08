@@ -1,0 +1,5 @@
+FROM centos
+
+ENV PROOF "1234"
+
+RUN useradd angelhs
