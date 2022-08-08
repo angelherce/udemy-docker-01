@@ -1,0 +1,1 @@
+docker run -d -p 8080:8080 centos:7 python -m SimpleHTTPServer 8080
