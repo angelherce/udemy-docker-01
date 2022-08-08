@@ -1,0 +1,7 @@
+FROM centos:latest
+
+ENV PROOF "Hi World !"
+
+RUN useradd angelhs
+
+USER angelhs
