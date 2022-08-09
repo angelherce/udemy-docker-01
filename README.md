@@ -11,7 +11,7 @@
 - [x] **Sección 3:** _Recursos del curso_
 - [x] **Sección 4:** _Docker Images_
 - [x] **Sección 5:** _Docker Containers_
-- [ ] **Sección 6:** _Docker Volumes_
+- [x] **Sección 6:** _Docker Volumes_
 - [ ] **Sección 7:** _Docker Network_
 - [ ] **Sección 8:** _Docker Compose_
 - [ ] **Sección 9:** _Docker Registry_
