@@ -1,0 +1,9 @@
+FROM php:apache
+
+LABEL version "1.0.0"
+
+WORKDIR /var/www/html
+
+COPY ./app/index.php ./
+
+EXPOSE 80
