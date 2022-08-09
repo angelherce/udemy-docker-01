@@ -1,0 +1,8 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    build:
+      context: './'
+      dockerfile: './centos.dockerfile'
+    container_name: nginx
