@@ -7,7 +7,7 @@ docker network create \
 docker run -dti \
     --network test-network \
     --ip 172.128.10.50 \
-    --name nginx \
+    --name test \
     centos:latest
 
-# docker network inspect test-network
+# docker inspect test
