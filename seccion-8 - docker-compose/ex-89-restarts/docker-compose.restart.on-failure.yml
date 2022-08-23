@@ -1,0 +1,8 @@
+version: '3'
+services:
+  test4:
+    image: restart-image-04
+    build: .
+    container_name: test4
+    hostname: test4
+    restart: 'on-failure'

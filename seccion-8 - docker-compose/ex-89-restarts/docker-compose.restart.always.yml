@@ -1,0 +1,8 @@
+version: '3'
+services:
+  test2:
+    image: restart-image-02
+    build: .
+    container_name: test2
+    hostname: test2
+    restart: 'always'

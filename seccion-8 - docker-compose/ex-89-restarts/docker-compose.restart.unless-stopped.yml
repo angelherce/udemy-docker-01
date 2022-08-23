@@ -1,0 +1,8 @@
+version: '3'
+services:
+  test3:
+    image: restart-image-03
+    build: .
+    container_name: test3
+    hostname: test3
+    restart: 'unless-stopped'
