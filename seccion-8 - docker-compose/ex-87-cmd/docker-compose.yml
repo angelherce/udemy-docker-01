@@ -1,0 +1,9 @@
+version: '3'
+services:
+  centos:
+    image: centos/python-38-centos7
+    command: python -m http.server 8080
+    container_name: centos
+    hostname: centos
+    ports:
+      - '8080:8080'
