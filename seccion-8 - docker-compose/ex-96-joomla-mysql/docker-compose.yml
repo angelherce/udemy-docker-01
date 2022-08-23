@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    hostname: mysql
+    volumes:
+      - 'vol-mysql:/var/lib/mysql'
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: joomla
+      MYSQL_USER: joomla
+      MYSQL_PASSWORD: 123456
+
+  joomla:
+    image: joomla
+    container_name: joomla
+    hostname: joomla
+    depends_on:
+      - mysql
+    environment:
+      JOOMLA_DB_HOST: mysql
+      JOOMLA_DB_NAME: joomla
+      JOOMLA_DB_USER: joomla
+      JOOMLA_DB_PASSWORD: 123456
+    volumes:
+      - 'vol-joomla:/var/www/html'
+    ports:
+      - '80:80'
+
+volumes:
+  vol-mysql:
+  vol-joomla:
