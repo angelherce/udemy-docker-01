@@ -1,0 +1,10 @@
+version: '3'
+services:
+  nginx:
+    image: nginx
+    container_name: nginx
+    hostname: nginx
+    mem_limit: 20m
+    cpuset: '0'
+    ports:
+      - '8080:80'
