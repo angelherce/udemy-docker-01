@@ -15,4 +15,4 @@
 - [x] **Sección 7:** _Docker Network_
 - [x] **Sección 8:** _Docker Compose_
 - [x] **Sección 9:** _Docker Registry_
-- [ ] **Sección 10:** _Bonus_  
+- [x] **Sección 10:** _Bonus_  
