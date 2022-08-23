@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    hostname: mongo
+    volumes:
+      - 'vol-mongo:/data/db'
+    networks:
+      - net-reaction
+
+  reaction:
+    image: reactioncommerce/reaction:3.13.4
+    container_name: reaction
+    hostname: reaction
+    environment:
+      ROOT_URL: 'http://localhost'
+      MONGO_URL: 'mongodb://mongo:27017/reaction'
+      STRIPE_API_KEY: '123456'
+    networks:
+      - net-reaction
+    depends_on:
+      - mongo
+    ports:
+      - '3000:3000'
+
+volumes: 
+  vol-mongo:
+
+networks:
+  net-reaction:
