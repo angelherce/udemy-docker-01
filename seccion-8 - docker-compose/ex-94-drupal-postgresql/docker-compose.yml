@@ -1,0 +1,32 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:10
+    container_name: postgres
+    hostname: postgres
+    environment:
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - 'vol-postgress:/var/lib/postgresql/data'
+    networks:
+      - net-drupal
+
+  drupal:
+    image: drupal:8-apache
+    container_name: drupal
+    hostname: drupal
+    depends_on:
+      - postgres
+    volumes:
+      - 'vol-drupal:/var/www/html'
+    networks:
+      - net-drupal
+    ports:
+      - '80:80'
+
+volumes:
+  vol-drupal:
+  vol-postgress:
+
+networks:
+  net-drupal:
