@@ -13,6 +13,6 @@
 - [x] **Sección 5:** _Docker Containers_
 - [x] **Sección 6:** _Docker Volumes_
 - [x] **Sección 7:** _Docker Network_
-- [ ] **Sección 8:** _Docker Compose_
+- [x] **Sección 8:** _Docker Compose_
 - [ ] **Sección 9:** _Docker Registry_
 - [ ] **Sección 10:** _Bonus_  
